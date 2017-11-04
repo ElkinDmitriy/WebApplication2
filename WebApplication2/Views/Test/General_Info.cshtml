@@ -1,0 +1,37 @@
+﻿
+@model Data.EditUserGeneral
+
+<div class="info_block">
+    <div class="split_block">
+        Общая информация
+    </div>
+    
+    @using (Html.BeginForm("general_info", "test", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <p>
+            @Html.ValidationMessageFor(m => m.FirstName)
+            @Html.LabelFor(m => m.FirstName, "Ваше имя:")
+            <br />
+            @Html.EditorFor(m => m.FirstName)
+        </p>
+
+            <p>
+                @Html.ValidationMessageFor(m => m.LastName)
+                @Html.LabelFor(m => m.LastName, "Фамилия:")
+                <br />
+                @Html.EditorFor(m => m.LastName)
+            </p>
+
+            <p>
+                @Html.ValidationMessageFor(m => m.DateBirth)
+                @Html.LabelFor(m => m.DateBirth, "Дата рождения:")
+                <br />
+                
+                <input type="date" required name="DateBirth" class="text-box single-line" id="DateBirth" value="" data-val-required="Обязательное поле" data-val="true" />
+            </p>
+
+            <p><input type="submit" value="Сохранить" /></p>
+    }
+
+</div>

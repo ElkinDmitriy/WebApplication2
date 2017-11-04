@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Auth";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="my_form">
+    <form action="/Auth/login" method="post">
+        @if (ViewBag.Er != "")
+        {
+            <p class="field-validation-error">@ViewBag.Er</p>
+        }
+        
+        <p>Ваш email:</p>
+        <p><input type="text" name="email" /></p>
+        <p>Ваш пароль:</p>
+        <p><input type="password" name="password" /></p>
+        <a class="href_auth" href="/Auth/getpass">Забыли пароль</a>
+        <a class="href_auth" href="/Auth/regis">Регистрация</a>
+        <p><input type="submit" value="Войти" /></p>
+    </form>
+</div>
+
+

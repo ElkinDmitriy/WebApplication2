@@ -1,0 +1,12 @@
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\Data.dll.config
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\Data.dll
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\Data.pdb
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\EntityFramework.dll
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\EntityFramework.xml
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\obj\Debug\Data.dll
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\obj\Debug\Data.pdb
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\System.Web.Mvc.dll
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\System.Web.Mvc.xml
+C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\ru\System.Web.Mvc.resources.dll

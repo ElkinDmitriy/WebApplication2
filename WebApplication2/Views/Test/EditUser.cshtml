@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.OldInfoUser != null)
+{
+    @Html.Partial("General_Info", new Data.EditUserGeneral() { FirstName = ViewBag.OldInfoUser.FirstName,
+    LastName = ViewBag.OldInfoUser.LastName,
+    DateBirth = ViewBag.OldInfoUser.DateBirth,
+    //PhoneNumber = ViewBag.OldInfoUser.PhoneNumber,
+    AboutMe = ViewBag.OldInfoUser.AboutMe
+})
+
+    @Html.Partial("Auth_Info", new Data.EditUserAuth() { Email = ViewBag.OldInfoUser.Email, Password = "", PasswordConfirm = ""})
+                                                                              
+                                                                              
+                                                                              
+}
+
+

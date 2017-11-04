@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "GetPass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model Data.GetPassUser
+
+<div class="my_form">
+
+    @using (Html.BeginForm("getpass", "auth", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <p>
+            @Html.ValidationMessageFor(m => m.Email)<br/>
+            @Html.LabelFor(m => m.Email, "Ваша почта на которую придет пароль:")
+            <br />
+            @Html.EditorFor(m => m.Email)
+        </p>
+
+        <input type="submit" value="Отправить"/>
+    }
+
+</div>
+
+

@@ -1,0 +1,37 @@
+﻿
+
+@model Data.EditUserAuth
+
+<div class="info_block">
+    <div class="split_block">
+        Общая информация
+    </div>
+
+    @using (Html.BeginForm("auth_info", "Test", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <p>
+            @Html.ValidationMessageFor(m => m.Email)
+            @Html.LabelFor(m => m.Email, "Ваш Email:")
+            <br />
+            @Html.EditorFor(m => m.Email)
+        </p>
+
+        <p>
+            @Html.ValidationMessageFor(m => m.Password)
+            @Html.LabelFor(m => m.Password, "Пароль:")
+            <br />
+            @Html.PasswordFor(m => m.Password)
+        </p>
+
+            <p>
+                @Html.ValidationMessageFor(m => m.PasswordConfirm)
+                @Html.LabelFor(m => m.PasswordConfirm, "Повторите пароль:")
+                <br />
+                @Html.PasswordFor(m => m.PasswordConfirm)
+            </p>
+
+            <p><input type="submit" value="Сохранить" /></p>
+    }
+
+</div>

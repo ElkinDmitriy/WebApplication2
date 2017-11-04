@@ -1,0 +1,31 @@
+﻿
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="text-align:right">
+    <a href="/Auth/logout">Выйти</a> <br/>
+    <a href="/Test/edituser">Редактировать</a>
+</div>
+
+<p> @(ViewBag.User.LastName + " " + ViewBag.User.FirstName )</p>
+<p> @(ViewBag.User.DateBirth.ToString().Split(' ')[0])</p>
+
+<div class="info_block">
+    <div class="split_block">
+        Контактная информация
+    </div>
+    <p>Телефон: @ViewBag.User.PhoneNumber</p>
+    <p>Email: @ViewBag.User.Email</p>
+</div>
+
+<div class="info_block">
+    <div class="split_block">
+        Обо мне
+    </div>
+    <div class="text_view">
+        @ViewBag.User.AboutMe
+    </div>
+</div>
+
