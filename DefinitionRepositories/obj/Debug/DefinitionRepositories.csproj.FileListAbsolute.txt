@@ -9,3 +9,27 @@ C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Definiti
 C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\DefinitionRepositories\bin\Debug\System.Web.Mvc.dll
 C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\DefinitionRepositories\bin\Debug\System.Web.Mvc.xml
 C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\DefinitionRepositories\bin\Debug\ru\System.Web.Mvc.resources.dll
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\bin\Debug\DefinitionRepositories.dll
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\bin\Debug\DefinitionRepositories.pdb
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\bin\Debug\Data.dll
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\bin\Debug\System.Web.Mvc.dll
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\bin\Debug\Data.pdb
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\bin\Debug\Data.dll.config
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\bin\Debug\System.Web.Mvc.xml
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\bin\Debug\ru\System.Web.Mvc.resources.dll
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\obj\Debug\DefinitionRepositories.csprojResolveAssemblyReference.cache
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\obj\Debug\DefinitionRepositories.csproj.CoreCompileInputs.cache
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\obj\Debug\DefinitionRepositories.dll
+C:\Users\Irta\Desktop\WebApplication2-master\DefinitionRepositories\obj\Debug\DefinitionRepositories.pdb
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\bin\Debug\DefinitionRepositories.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\bin\Debug\DefinitionRepositories.pdb
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\bin\Debug\Data.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\bin\Debug\System.Web.Mvc.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\bin\Debug\Data.pdb
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\bin\Debug\Data.dll.config
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\bin\Debug\System.Web.Mvc.xml
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\bin\Debug\ru\System.Web.Mvc.resources.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\obj\Debug\DefinitionRepositories.csprojResolveAssemblyReference.cache
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\obj\Debug\DefinitionRepositories.csproj.CoreCompileInputs.cache
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\obj\Debug\DefinitionRepositories.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\DefinitionRepositories\obj\Debug\DefinitionRepositories.pdb

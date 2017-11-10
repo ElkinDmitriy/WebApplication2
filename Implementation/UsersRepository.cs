@@ -21,8 +21,8 @@ namespace Implementation
         {
             db.Users.Add(entity);
         }
-
         public void Delete(int id)
+
         {
             Data.User tmpUser = db.Users.Find(id);
             if(tmpUser != null)
@@ -31,9 +31,13 @@ namespace Implementation
             }
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAllWhere(Func<User, bool> func = null)
         {
-            return db.Users.ToList();
+            if (func != null) {
+                return db.Users.Where(func).ToList();
+            }
+            else return db.Users.ToList();
+            
         }
 
         public User GetForId(int id)

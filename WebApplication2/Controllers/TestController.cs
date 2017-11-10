@@ -86,7 +86,7 @@ namespace WebApplication2.Controllers
                     try
                     {
                         int id = int.Parse(HttpContext.Request.Cookies["Test Site"].Values["Id"]);
-                        Data.User tmpUser = RepUsers.GetAll().Single(u => u.Id == id);
+                        Data.User tmpUser = RepUsers.GetAllWhere(u => u.Id == id).First();
                         ViewBag.OldInfoUser = tmpUser;
                     }catch(Exception ex)
                     {
@@ -119,7 +119,7 @@ namespace WebApplication2.Controllers
                 RepUsers.SaveChange();
             }
 
-            //return PartialView();
+            
             return Redirect("/Test/edituser");
         }
 
@@ -137,7 +137,7 @@ namespace WebApplication2.Controllers
             RepUsers.Update(tmpUser);
             RepUsers.SaveChange();
 
-            //return PartialView();
+            
 
             return Redirect("/Test/edituser");
         }

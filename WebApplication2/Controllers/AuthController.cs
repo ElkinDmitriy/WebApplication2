@@ -165,7 +165,7 @@ namespace WebApplication2.Controllers
             
                 try
                 {
-                    Data.User tmpUser = RepUsers.GetAll().Single(u => u.Email == Email);
+                    Data.User tmpUser = RepUsers.GetAllWhere(u => u.Email == Email).First();
                 }
                 catch (Exception)
                 {
@@ -182,7 +182,7 @@ namespace WebApplication2.Controllers
             
                 try
                 {
-                    Data.User tmpUser = RepUsers.GetAll().Single(u => u.Email == Email);
+                    Data.User tmpUser = RepUsers.GetAllWhere(u => u.Email == Email).First();
                     return Json(true, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception)
@@ -204,7 +204,7 @@ namespace WebApplication2.Controllers
                 {
                     if(tmpUser.Email != Email)
                     {
-                        RepUsers.GetAll().Single(u => u.Email == Email);
+                        RepUsers.GetAllWhere(u => u.Email == Email).First();
                         return Json("Этот адрес занят", JsonRequestBehavior.AllowGet);
                     }
                     else

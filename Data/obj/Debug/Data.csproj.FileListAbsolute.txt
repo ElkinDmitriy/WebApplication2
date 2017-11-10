@@ -10,3 +10,16 @@ C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\obj
 C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\System.Web.Mvc.dll
 C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\System.Web.Mvc.xml
 C:\Users\mosquito\documents\visual studio 2017\Projects\WebApplication2\Data\bin\Debug\ru\System.Web.Mvc.resources.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\Data.dll.config
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\Data.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\Data.pdb
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\EntityFramework.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\System.Web.Mvc.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\EntityFramework.xml
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\System.Web.Mvc.xml
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\bin\Debug\ru\System.Web.Mvc.resources.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\obj\Debug\Data.dll
+C:\Users\Irta\Desktop\new folder\WebApplication2\Data\obj\Debug\Data.pdb

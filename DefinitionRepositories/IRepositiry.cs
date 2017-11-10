@@ -9,7 +9,11 @@ namespace DefinitionRepositories
     public interface IRepositiry <T> where T: class
     {
 
-        IEnumerable<T> GetAll(); // будет получать список всех записей
+        /*
+         * GetAllWhere returned list records where func is true
+         * IF func is null returned All records
+         */
+        IEnumerable<T> GetAllWhere(Func<T, bool> func = null);  
         T GetForId(int id); // вернет запись по конкретному id
         void Update(T entity);
         void Create(T entity);

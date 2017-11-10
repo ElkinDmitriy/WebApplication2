@@ -29,7 +29,7 @@ namespace Utils.Auth
 
                 try
                 {
-                    Data.User tmpUser = RepUser.GetAll().Single(u => u.Id.ToString() == id && u.Password == password);
+                    Data.User tmpUser = RepUser.GetAllWhere(u => u.Id.ToString() == id && u.Password == password).First();
                     if (tmpUser != null) { result = false; }
                 }
                 catch (Exception ex) { return true; }
@@ -71,9 +71,10 @@ namespace Utils.Auth
                     string HPas = GetHash(logUser.Password);
                     try
                     {
-                        Data.User tmpUser = RepUsers.GetAll().Single(u => u.Email == logUser.Email && u.Password == HPas && u.IsConfirm == true);
+                        
+                    Data.User tmpUser = RepUsers.GetAllWhere(u => u.Email == logUser.Email && u.Password == HPas && u.IsConfirm == true).First();
 
-                        HttpCookie cookie = new HttpCookie("Test Site");
+                    HttpCookie cookie = new HttpCookie("Test Site");
 
                         cookie["id"] = tmpUser.Id.ToString();
                         cookie["password"] = HPas;
@@ -98,7 +99,7 @@ namespace Utils.Auth
             }
         }
 
-        private static bool SendMail(Data.LoginUser logUser)
+        private static bool SendMail(Data.LoginUser logUser, string subject, string body)
         {
             SmtpClient Smtp = new SmtpClient("smtp.yandex.ru", 25);
 
@@ -114,8 +115,10 @@ namespace Utils.Auth
             MailMessage Message = new MailMessage();
             Message.From = new MailAddress(Address);
             Message.To.Add(new MailAddress(logUser.Email));
-            Message.Subject = WebConfigurationManager.AppSettings.GetValues("SubjectMail")[0];
-            Message.Body = WebConfigurationManager.AppSettings.GetValues("BodyMail")[0] + logUser.Password;
+            Message.Subject = subject;
+            Message.Body = body;
+            
+            
 
             try
             {
@@ -144,11 +147,12 @@ namespace Utils.Auth
 
         public static bool IsExist(string email, Implementation.UsersRepository RepUsers)
         {
-            
-                if (RepUsers.GetAll().Count() == 0) { return false; }
+
+            IEnumerable<Data.User> ListUsers = RepUsers.GetAllWhere();
+                if (ListUsers.Count() == 0) { return false; }
                 try
                 {
-                    Data.User tmpUser = RepUsers.GetAll().Single(u => u.Email == email);
+                    Data.User tmpUser = ListUsers.Single(u => u.Email == email);
                 }
                 catch (Exception ex) { return false; }
 
@@ -178,9 +182,11 @@ namespace Utils.Auth
                 {
                     ;
                 }
-            
 
-            if (SendMail(new Data.LoginUser { Email = regUser.Email, Password = regUser.Password}))
+            if (SendMail(new Data.LoginUser { Email = regUser.Email, Password = regUser.Password},
+                        WebConfigurationManager.AppSettings.GetValues("SubjectMailConfirm")[0],
+                        WebConfigurationManager.AppSettings.GetValues("BodyMailConfirm")[0] + regUser.Password
+                ))
             {
 
             }
@@ -190,37 +196,6 @@ namespace Utils.Auth
             }
         }
 
-
-        private static bool SendNewPass(Data.LoginUser logUser)
-        {
-            SmtpClient Smtp = new SmtpClient("smtp.yandex.ru", 25);
-
-            string Address = WebConfigurationManager.AppSettings.GetValues("Address")[0];
-            string Password = WebConfigurationManager.AppSettings.GetValues("Password")[0];
-
-            Smtp.EnableSsl = true;
-            Smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            Smtp.UseDefaultCredentials = false;
-
-
-            Smtp.Credentials = new NetworkCredential(Address, Password);
-            MailMessage Message = new MailMessage();
-            Message.From = new MailAddress(Address);
-            Message.To.Add(new MailAddress(logUser.Email));
-            Message.Subject = "Новый пароль";
-            Message.Body = "Добрый день! вы воспользовались сервисом востановления пароля. Ваш новый пароль: " + logUser.Password;
-
-            try
-            {
-                Smtp.Send(Message);
-            }
-            catch (SmtpException ex)
-            {
-                return false;
-            }
-
-            return true;
-        }
 
 
 
@@ -243,12 +218,18 @@ namespace Utils.Auth
             
                 try
                 {
-                    Data.User tmpUser = RepUsers.GetAll().Single(u => u.Email == email);
+                    Data.User tmpUser = RepUsers.GetAllWhere(u => u.Email == email).First();
                     tmpUser.Password = HPass;
                     
-                    if (SendNewPass(new Data.LoginUser { Email = email, Password = NewPass}))// пытаемся отослать сообщение с новым паролем
-                    {
-                        RepUsers.SaveChange();
+                    if (SendMail(new Data.LoginUser { Email = email, Password = NewPass},
+                                    WebConfigurationManager.AppSettings.GetValues("SubjectMailNewPass")[0],
+                                    WebConfigurationManager.AppSettings.GetValues("BodyMailNewPass")[0] + NewPass
+                    ))
+                { }
+                else { }
+                
+                {
+                    RepUsers.SaveChange();
 
                         HttpCookie cookie = new HttpCookie("Test Site");
 
@@ -268,7 +249,7 @@ namespace Utils.Auth
         public static void Confirm(string id, Implementation.UsersRepository RepUsers)
         {
             
-                var Users = RepUsers.GetAll().Where(u => u.IsConfirm == false && u.Password == id);
+                var Users = RepUsers.GetAllWhere(u => u.IsConfirm == false && u.Password == id);
 
                 if (Users != null)
                 {
