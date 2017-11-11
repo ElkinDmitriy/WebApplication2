@@ -9,6 +9,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Web.Configuration;
+using System.ComponentModel;
 
 namespace Utils.Auth
 {
@@ -99,9 +100,12 @@ namespace Utils.Auth
             }
         }
 
-        private static bool SendMail(Data.LoginUser logUser, string subject, string body)
+
+
+
+        private static void SendMail(Data.LoginUser logUser, string subject, string body)
         {
-            SmtpClient Smtp = new SmtpClient("smtp.yandex.ru", 25);
+            SmtpClient Smtp = new SmtpClient("smtp.yandex.ru", 587); //587
 
             string Address = WebConfigurationManager.AppSettings.GetValues("Address")[0];
             string Password = WebConfigurationManager.AppSettings.GetValues("Password")[0];
@@ -109,6 +113,7 @@ namespace Utils.Auth
             Smtp.EnableSsl = true;
             Smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             Smtp.UseDefaultCredentials = false;
+            
 
 
             Smtp.Credentials = new NetworkCredential(Address, Password);
@@ -118,18 +123,20 @@ namespace Utils.Auth
             Message.Subject = subject;
             Message.Body = body;
             
-            
+
+
 
             try
             {
                 Smtp.Send(Message);
+                
             }
             catch (SmtpException ex)
             {
-                return false;
+                throw new Exception(ex.Message, ex);
             }
 
-            return true;
+            
         }
 
 
@@ -173,27 +180,23 @@ namespace Utils.Auth
             newUser.Password = regUser.Password;
             newUser.IsConfirm = false;
 
-            RepUsers.Create(newUser);
-                try
-                {
-                    RepUsers.SaveChange();
-                }
-                catch (Exception ex)
-                {
-                    ;
-                }
-
-            if (SendMail(new Data.LoginUser { Email = regUser.Email, Password = regUser.Password},
-                        WebConfigurationManager.AppSettings.GetValues("SubjectMailConfirm")[0],
-                        WebConfigurationManager.AppSettings.GetValues("BodyMailConfirm")[0] + regUser.Password
-                ))
+            
+            try
             {
+                SendMail(new Data.LoginUser { Email = regUser.Email, Password = regUser.Password },
+                    WebConfigurationManager.AppSettings.GetValues("SubjectMailConfirm")[0],
+                    WebConfigurationManager.AppSettings.GetValues("BodyMailConfirm")[0] + regUser.Password);
 
+                RepUsers.Create(newUser);
+                RepUsers.SaveChange();
             }
-            else
+            catch (Exception ex)
             {
-
+                throw new Exception(ex.Message, ex);
             }
+
+            
+            
         }
 
 
@@ -215,32 +218,32 @@ namespace Utils.Auth
             string NewPass = SB.ToString(); //пароль
             string HPass = GetHash(NewPass); // хеш пароля
 
-            
-                try
+            HttpCookie cookie = new HttpCookie("Test Site");
+
+            cookie["email"] = email;
+
+            MyHttpContext.Response.Cookies.Add(cookie);
+
+
+            try
                 {
+                    
+
+                    SendMail(new Data.LoginUser { Email = email, Password = NewPass },
+                                    WebConfigurationManager.AppSettings.GetValues("SubjectMailNewPass")[0],
+                                    WebConfigurationManager.AppSettings.GetValues("BodyMailNewPass")[0] + NewPass);
+
+
                     Data.User tmpUser = RepUsers.GetAllWhere(u => u.Email == email).First();
                     tmpUser.Password = HPass;
-                    
-                    if (SendMail(new Data.LoginUser { Email = email, Password = NewPass},
-                                    WebConfigurationManager.AppSettings.GetValues("SubjectMailNewPass")[0],
-                                    WebConfigurationManager.AppSettings.GetValues("BodyMailNewPass")[0] + NewPass
-                    ))
-                { }
-                else { }
-                
-                {
                     RepUsers.SaveChange();
 
-                        HttpCookie cookie = new HttpCookie("Test Site");
-
-                        cookie["email"] = email;
-
-                        MyHttpContext.Response.Cookies.Add(cookie);
-                    }
-
-
+              
                 }
-                catch (Exception ex) { }
+                catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
             
 
         }

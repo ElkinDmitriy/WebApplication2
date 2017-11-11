@@ -78,7 +78,7 @@ namespace WebApplication2.Controllers
             if (!Utils.Auth.Auth.IsExist(regisUser.Email, this.RepUsers)) // Если пользователя с такой почтой нет
             {
                 
-                Utils.Auth.Auth.Reg(regisUser, this.RepUsers);
+                
 
                 //устанавливаем временные куки для информативной страницы
                 HttpCookie cookie = new HttpCookie("Test Site");
@@ -86,10 +86,22 @@ namespace WebApplication2.Controllers
                 cookie["email"] = regisUser.Email;
 
                 HttpContext.Response.Cookies.Add(cookie);
+
+                try
+                {
+                    Utils.Auth.Auth.Reg(regisUser, this.RepUsers);
+                    
+                }
+                catch (Exception ex)
+                {
+                    return Redirect("/Auth/inforegis/?id=false");
+                }
+
+                return Redirect("/Auth/inforegis/?id=true");
             }
 
-            return Redirect("/Auth/inforegis");
-            
+
+            return Redirect("/Auth/inforegis/?id=true"); //НАДО ОБДУМАТь результат проверки на существующий email пока такой вариант
         }
 
         //===========================================================
@@ -106,7 +118,7 @@ namespace WebApplication2.Controllers
         //===========================================================
 
         [HttpGet]
-        public ActionResult InfoRegis()
+        public ActionResult InfoRegis(string id)
         {
             if (HttpContext.Request.Cookies.Count == 0) { return Redirect("/Test/index"); }
 
@@ -120,13 +132,14 @@ namespace WebApplication2.Controllers
                 HttpContext.Response.Cookies["Test Site"].Values.Set("email", "");
             }
 
+            ViewBag.IsRegis = id;
             return View();
         }
 
         //===========================================================
 
         [HttpGet]
-        public ActionResult InfoGetPass()
+        public ActionResult InfoGetPass(string id)
         {
             if (HttpContext.Request.Cookies.Count == 0) { return Redirect("/Test/index"); }
 
@@ -140,6 +153,8 @@ namespace WebApplication2.Controllers
                 HttpContext.Response.Cookies["Test Site"].Values.Set("email", "");
             }
 
+
+            ViewBag.IsGetPass = id;
             return View();
         }
 
@@ -154,8 +169,12 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult GetPass(Data.GetPassUser getPassUser)
         {
-            Utils.Auth.Auth.GetNewPass(getPassUser.Email, this.RepUsers, this.HttpContext);
-            return Redirect("/Auth/infogetpass");
+            try
+            {
+                Utils.Auth.Auth.GetNewPass(getPassUser.Email, this.RepUsers, this.HttpContext);
+                return Redirect("/Auth/infogetpass/?id=true");
+            }
+            catch (Exception ex) { return Redirect("/Auth/infogetpass/?id=false"); }
         }
 
         //============================================================
